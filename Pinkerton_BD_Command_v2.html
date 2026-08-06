@@ -327,6 +327,21 @@ main{padding:20px;max-width:1700px;margin:0 auto;}
 </head>
 <body>
 
+<script>
+(function() {
+  var stored = sessionStorage.getItem('pk_auth');
+  if (stored !== 'ok') {
+    var pw = prompt('Enter password to access this dashboard:');
+    if (pw !== 'Pinkerton0903') {
+      document.documentElement.innerHTML = '<div style="font-family:sans-serif;text-align:center;margin-top:20%;font-size:1.4em;color:#333;">Access denied.</div>';
+      throw new Error('Access denied');
+    }
+    sessionStorage.setItem('pk_auth', 'ok');
+  }
+})();
+</script>
+
+
 <nav>
   <div class="nav-logo">
     <img src="https://pinkerton.com/logo.svg" alt="Pinkerton" onerror="this.style.display='none';this.nextSibling.style.display='flex'">
